@@ -6,4 +6,5 @@ export interface IBookingRepository {
   findById(id: string): IBooking | undefined;
   findByPassengerName(passengerName: string): IBooking[];
   findByRoute(RouteId: string): IBooking[];
+  delete(id: string): boolean;
 }

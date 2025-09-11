@@ -31,4 +31,8 @@ export class BookingRepository implements IBookingRepository {
   public findByRoute(routeId: string): Booking[] {
     return Array.from(this.bookings.values()).filter(booking => booking.routeId === routeId);
   }
+
+  public delete(id: string): boolean {
+    return this.bookings.delete(id);
+  }
 }
