@@ -5,11 +5,7 @@ import { City } from "../models/City";
  * CityRepository
  */
 export class CityRepository implements ICityRepository {
-  private cities: Map<string, City>;
-
-  constructor(cities: Map<string, City>) {
-    this.cities = cities || new Map<string, City>();
-  }
+  private cities: Map<string, City> = new Map();
 
   public create(city: City): City {
     this.cities.set(city.id, city);
@@ -22,5 +18,9 @@ export class CityRepository implements ICityRepository {
 
   public findById(id: string): City | undefined {
     return this.cities.get(id);
+  }
+
+  public isExist(name: string): boolean {
+    return this.cities.has(name);
   }
 }

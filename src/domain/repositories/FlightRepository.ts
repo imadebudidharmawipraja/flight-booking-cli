@@ -5,11 +5,7 @@ import { Flight } from "../models/Flight";
  * FlightRepository
  */
 export class FlightRepository implements IFlightRepository {
-  private flights: Map<string, Flight>;
-
-  constructor(flights: Map<string, Flight>) {
-    this.flights = flights || new Map<string, Flight>();
-  }
+  private flights: Map<string, Flight> = new Map();
 
   public create(flight: Flight): Flight {
     this.flights.set(flight.id, flight);

@@ -1,10 +1,10 @@
-import { IRouteService } from "../interfaces";
-import { RouteRepository } from "../repositories/RouteRepository";
+import { IRouteRepository, IRouteService } from "../interfaces";
+import { Route } from "../models/Route";
 
 export class RouteService implements IRouteService {
-  private repository: RouteRepository;
+  private repository: IRouteRepository;
 
-  constructor(repository: RouteRepository) {
+  constructor(repository: IRouteRepository) {
     this.repository = repository
   }
 
@@ -16,13 +16,13 @@ export class RouteService implements IRouteService {
   ): string[] {
     const message = []
 
-    this.repository.create({
-      id: `${flightId}-${departureCity}-${destinationCity}-${scheduledDay}`,
+    this.repository.create(new Route(
+      `${flightId}-${departureCity}-${destinationCity}-${scheduledDay}`,
       departureCity,
       destinationCity,
       scheduledDay,
       flightId
-    })
+    ))
 
     message.push(`flight from ${departureCity} to ${destinationCity} has been scheduled on day ${scheduledDay}`)
     return message;
