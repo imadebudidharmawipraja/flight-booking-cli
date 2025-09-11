@@ -16,3 +16,6 @@ export { IPassengerRepository } from './IPassengerRepository';
 export { IRouteRepository } from './IRouteRepository';
 export { ISessionRepository } from './ISessionRepository';
 
+// Service interfaces
+export { ISessionService } from './ISessionService';
+
