@@ -1,6 +1,13 @@
 import { question } from 'readline-sync';
+import { AdminCLI } from './AdminCLI';
 
 export class CLI {
+  private adminCLI: AdminCLI;
+
+  constructor() {
+    this.adminCLI = new AdminCLI();
+  }
+
   public start(): void {
     try {
       while (true) {
@@ -12,7 +19,7 @@ export class CLI {
         const input = question('> ');
         switch (input) {
           case "1":
-            this.adminMenu()
+            this.adminCLI.menu();
             break;
           case "2":
             this.userMenu()
@@ -26,22 +33,6 @@ export class CLI {
         error instanceof Error ? error.message : 'Unknown error';
 
       console.log(`Error: ${errorMessage}`);
-    }
-  }
-
-  private adminMenu() {
-    while (true) {
-      console.log("\n==== ADMIN PANEL ====");
-      console.log("7. Exit");
-
-      const choice = question("Select an option (1-3): ");
-
-      switch (choice) {
-        case "7":
-          return;
-        default:
-          console.log("❌ Invalid option. Try again.");
-      }
     }
   }
 

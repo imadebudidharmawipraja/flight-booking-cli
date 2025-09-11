@@ -1,3 +1,6 @@
+import { Flight } from "../models/Flight";
+import { Route } from "../models/Route";
+
 export interface IRouteService {
   registerRoute(
     departureCity: string,
@@ -5,4 +8,5 @@ export interface IRouteService {
     scheduledDay: number,
     flightId: string
   ): string[];
+  getAvailableFlightByDay(day: number): Flight[];
 }
