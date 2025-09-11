@@ -19,5 +19,6 @@ export { ISessionRepository } from './ISessionRepository';
 // Service interfaces
 export { ICityService } from './ICityService';
 export { IFlightService } from './IFlightService';
+export { IRouteService } from './IRouteService';
 export { ISessionService } from './ISessionService';
 
