@@ -44,8 +44,7 @@ export class RouteService implements IRouteService {
     return flights.filter(flight => !takenFlightIds.has(flight.id));
   }
 
-  public getAvailableBookFlight(departure: string, destination: string, currentDay: number): string[] {
-    const message = []
+  public getAvailableBookFlight(departure: string, destination: string, currentDay: number): Route[] {
     const availableRoute = this.repository.findByCities(departure, destination);
     const availableByDay = availableRoute.filter((route: Route) => route.scheduledDay > currentDay);
     const mappedRoute = availableByDay.filter((route: Route) => {
@@ -55,11 +54,6 @@ export class RouteService implements IRouteService {
       return bookCount < flightCapacity
     })
 
-    message.push(
-      mappedRoute.length > 0 ?
-        `flight found: ${departure} - ${destination} on day ${mappedRoute[0].scheduledDay}` :
-        'no flight is available for that route'
-    )
-    return message;
+    return mappedRoute;
   }
 }
