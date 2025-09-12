@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  flight-booking-cli:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: flight-booking-app
+    stdin_open: true    
+    tty: true          
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
