@@ -1,5 +1,5 @@
-import { IBooking } from "../interfaces";
-import { BookingStatus } from "../interfaces/IBooking";
+import { IBooking } from '../interfaces';
+import { BookingStatus } from '../interfaces/IBooking';
 
 /**
  * Booking Model.
@@ -25,4 +25,3 @@ export class Booking implements IBooking {
     this.flightDay = flightDay;
   }
 }
-

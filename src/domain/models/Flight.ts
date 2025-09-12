@@ -1,4 +1,4 @@
-import { IFlight } from "../interfaces";
+import { IFlight } from '../interfaces';
 
 /**
  * Flight model.
@@ -12,4 +12,3 @@ export class Flight implements IFlight {
     this.capacity = capacity;
   }
 }
-

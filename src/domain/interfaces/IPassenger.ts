@@ -1,3 +1,3 @@
 export interface IPassenger {
-    readonly name: string;
+  readonly name: string;
 }

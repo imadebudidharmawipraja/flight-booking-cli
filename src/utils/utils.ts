@@ -1,8 +1,10 @@
-
 /**
  * Validates that a string can be parsed as a number
  */
-export function parseNumber(value: string, maxNumber?: number): {
+export function parseNumber(
+  value: string,
+  maxNumber?: number
+): {
   valid: boolean;
   amount?: number;
   error?: string;
@@ -32,12 +34,18 @@ export function arrayToString<T>(array: T[], key: keyof T): string {
     return '';
   }
 
-  return array.map(item => {
-    const value = item[key];
-    // Ensure the value is a string or can be safely converted to one.
-    if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-      return value.toString();
-    }
-    return '';
-  }).join(', ');
+  return array
+    .map(item => {
+      const value = item[key];
+      // Ensure the value is a string or can be safely converted to one.
+      if (
+        typeof value === 'string' ||
+        typeof value === 'number' ||
+        typeof value === 'boolean'
+      ) {
+        return value.toString();
+      }
+      return '';
+    })
+    .join(', ');
 }

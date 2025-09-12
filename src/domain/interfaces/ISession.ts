@@ -1,3 +1,3 @@
 export interface ISession {
-    currentUser: string;
+  currentUser: string;
 }

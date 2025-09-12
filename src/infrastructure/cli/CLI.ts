@@ -17,21 +17,21 @@ export class CLI {
   public start(): void {
     try {
       while (true) {
-        console.log("\n==== SIMPLE FLIGHT BOOKING & RUNNING SYSTEM ====");
-        console.log("Login as:");
-        console.log("1. Admin");
-        console.log("2. Passenger");
+        console.log('\n==== SIMPLE FLIGHT BOOKING & RUNNING SYSTEM ====');
+        console.log('Login as:');
+        console.log('1. Admin');
+        console.log('2. Passenger');
 
         const input = question('\n> ');
         switch (input) {
-          case "1":
+          case '1':
             this.adminCLI.menu();
             break;
-          case "2":
+          case '2':
             this.passengerCLI.handlePassengerLogin();
             break;
           default:
-            console.log("❌ Invalid option. Please enter 1 or 2.");
+            console.log('❌ Invalid option. Please enter 1 or 2.');
         }
       }
     } catch (error) {

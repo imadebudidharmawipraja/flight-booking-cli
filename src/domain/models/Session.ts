@@ -1,9 +1,9 @@
 import { ISession } from '../interfaces';
 
 export class Session implements ISession {
-    currentUser: string;
+  currentUser: string;
 
-    constructor(currentUser: string) {
-        this.currentUser = currentUser;
-    }
+  constructor(currentUser: string) {
+    this.currentUser = currentUser;
+  }
 }

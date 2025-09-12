@@ -1,17 +1,31 @@
-import { IBookingRepository, IBookingService, ICityRepository, ICityService, ICurrentDayRepository, ICurrentDayService, IFlightRepository, IFlightService, IPassengerRepository, IRouteRepository, IRouteService, ISessionRepository, ISessionService } from "../interfaces";
-import { BookingRepository } from "../repositories/BookingRepository";
-import { CityRepository } from "../repositories/CityRepository";
-import { CurrentDayRepository } from "../repositories/CurrentDayRepository";
-import { FlightRepository } from "../repositories/FlightRepository";
-import { PassengerRepository } from "../repositories/PassengerRepository";
-import { RouteRepository } from "../repositories/RouteRepository";
-import { SessionRepository } from "../repositories/SessionRepository";
-import { BookingService } from "./BookingService";
-import { CityService } from "./CityService";
-import { CurrentDayService } from "./CurrentDayService";
-import { FlightService } from "./FlightService";
-import { RouteService } from "./RouteService";
-import { SessionService } from "./SessionService";
+import {
+  IBookingRepository,
+  IBookingService,
+  ICityRepository,
+  ICityService,
+  ICurrentDayRepository,
+  ICurrentDayService,
+  IFlightRepository,
+  IFlightService,
+  IPassengerRepository,
+  IRouteRepository,
+  IRouteService,
+  ISessionRepository,
+  ISessionService,
+} from '../interfaces';
+import { BookingRepository } from '../repositories/BookingRepository';
+import { CityRepository } from '../repositories/CityRepository';
+import { CurrentDayRepository } from '../repositories/CurrentDayRepository';
+import { FlightRepository } from '../repositories/FlightRepository';
+import { PassengerRepository } from '../repositories/PassengerRepository';
+import { RouteRepository } from '../repositories/RouteRepository';
+import { SessionRepository } from '../repositories/SessionRepository';
+import { BookingService } from './BookingService';
+import { CityService } from './CityService';
+import { CurrentDayService } from './CurrentDayService';
+import { FlightService } from './FlightService';
+import { RouteService } from './RouteService';
+import { SessionService } from './SessionService';
 
 /**
  * ApplicationService - Main application service that orchestrates all other services
@@ -45,8 +59,15 @@ export class ApplicationService {
     this.cityService = new CityService(this.cityRepository);
     this.currentDayService = new CurrentDayService(this.currentDayRepository);
     this.flightService = new FlightService(this.flightRepository);
-    this.routeService = new RouteService(this.routeRepository, this.flightRepository, this.bookingRepository);
-    this.sessionService = new SessionService(this.sessionRepository, this.passengerRepository);
+    this.routeService = new RouteService(
+      this.routeRepository,
+      this.flightRepository,
+      this.bookingRepository
+    );
+    this.sessionService = new SessionService(
+      this.sessionRepository,
+      this.passengerRepository
+    );
   }
 
   public getBookingService(): IBookingService {

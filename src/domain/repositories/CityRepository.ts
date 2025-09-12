@@ -1,5 +1,5 @@
-import { ICityRepository } from "../interfaces";
-import { City } from "../models/City";
+import { ICityRepository } from '../interfaces';
+import { City } from '../models/City';
 
 /**
  * CityRepository
@@ -13,7 +13,7 @@ export class CityRepository implements ICityRepository {
   }
 
   public findAll(): City[] {
-    return Array.from(this.cities.values());;
+    return Array.from(this.cities.values());
   }
 
   public findById(id: string): City | undefined {

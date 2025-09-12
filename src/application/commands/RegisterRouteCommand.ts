@@ -1,6 +1,6 @@
-import { question } from "readline-sync";
-import { ApplicationService } from "../../domain/services/ApplicationService";
-import { arrayToString, parseNumber } from "../../utils/utils";
+import { question } from 'readline-sync';
+import { ApplicationService } from '../../domain/services/ApplicationService';
+import { arrayToString, parseNumber } from '../../utils/utils';
 
 export class RegisterRouteCommand {
   public execute(applicationService: ApplicationService): string[] {
@@ -9,16 +9,16 @@ export class RegisterRouteCommand {
     const cities = cityService.getCities();
     cities.forEach(city => console.log(city));
 
-    const departureCity = question("Enter Departure City: ");
+    const departureCity = question('Enter Departure City: ');
     //check if city exist
     if (cityService.isCityExist(departureCity)) {
-      return [`selected city is not available as departure city`]
-    };
+      return [`selected city is not available as departure city`];
+    }
 
-    const destinationCity = question("Enter Destination City: ");
+    const destinationCity = question('Enter Destination City: ');
     //check if city exist
     if (cityService.isCityExist(destinationCity)) {
-      return [`selected city is not available as destination city`]
+      return [`selected city is not available as destination city`];
     }
 
     //check same departure and destination
@@ -26,31 +26,39 @@ export class RegisterRouteCommand {
       return ['Departure and Destination city cannot be the same'];
     }
 
-    const scheduledDay = question("Enter Scheduled Day in Week (1-7): ");
+    const scheduledDay = question('Enter Scheduled Day in Week (1-7): ');
     //check for correct day value
     const dayCheck = parseNumber(scheduledDay);
     if (!dayCheck.valid) {
       return [dayCheck.error!];
-    };
+    }
 
     //get and print available flight on selected day
-    const availableFlight = routeService.getAvailableFlightByDay(dayCheck.amount!);
-    console.log(`available flight on selected day are: ${arrayToString(availableFlight, 'id')}`);
-    const flightId = question("Enter Flight Id: ");
+    const availableFlight = routeService.getAvailableFlightByDay(
+      dayCheck.amount!
+    );
+    console.log(
+      `available flight on selected day are: ${arrayToString(availableFlight, 'id')}`
+    );
+    const flightId = question('Enter Flight Id: ');
 
     //check available flight on that day
     if (!availableFlight.some(flight => flight.id === flightId)) {
-      return ['flight Id is not valid or not available']
-    };
+      return ['flight Id is not valid or not available'];
+    }
 
     try {
-      const messages = applicationService.getRouteService().registerRoute(
-        departureCity, destinationCity, dayCheck.amount!, flightId
-      );
+      const messages = applicationService
+        .getRouteService()
+        .registerRoute(
+          departureCity,
+          destinationCity,
+          dayCheck.amount!,
+          flightId
+        );
       return messages;
-    } catch (error) {
+    } catch {
       return ['Register route failed. Please try again.'];
     }
   }
-
 }

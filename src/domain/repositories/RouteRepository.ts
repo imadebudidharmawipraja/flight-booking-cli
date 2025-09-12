@@ -24,10 +24,15 @@ export class RouteRepository implements IRouteRepository {
   }
 
   findByCities(departure: string, destination: string): Route[] {
-    return Array.from(this.routes.values().filter(
-      (route) =>
-        route.departureCity === departure && route.destinationCity === destination
-    ));
+    return Array.from(
+      this.routes
+        .values()
+        .filter(
+          route =>
+            route.departureCity === departure &&
+            route.destinationCity === destination
+        )
+    );
   }
 
   findAll(): Route[] {

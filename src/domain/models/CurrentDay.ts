@@ -1,9 +1,9 @@
 import { ICurrentDay } from '../interfaces';
 
 export class CurrentDay implements ICurrentDay {
-    currentDay: number;
+  currentDay: number;
 
-    constructor(currentDay: number) {
-        this.currentDay = currentDay;
-    }
+  constructor(currentDay: number) {
+    this.currentDay = currentDay;
+  }
 }

@@ -1,3 +1,3 @@
 export interface ICurrentDay {
-    currentDay: number;
+  currentDay: number;
 }

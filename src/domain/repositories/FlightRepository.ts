@@ -1,5 +1,5 @@
-import { IFlightRepository } from "../interfaces";
-import { Flight } from "../models/Flight";
+import { IFlightRepository } from '../interfaces';
+import { Flight } from '../models/Flight';
 
 /**
  * FlightRepository

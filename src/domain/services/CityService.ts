@@ -1,28 +1,32 @@
-import { arrayToString } from "../../utils/utils";
-import { ICityRepository, ICityService } from "../interfaces";
-import { City } from "../models/City";
+import { arrayToString } from '../../utils/utils';
+import { ICityRepository, ICityService } from '../interfaces';
+import { City } from '../models/City';
 
 export class CityService implements ICityService {
   private repository: ICityRepository;
 
   constructor(repository: ICityRepository) {
-    this.repository = repository
+    this.repository = repository;
   }
 
   public registerCity(id: string, name: string): string[] {
-    const message = []
+    const message = [];
 
-    this.repository.create(new City(id, name))
+    this.repository.create(new City(id, name));
 
-    message.push(`${name} has been created as destination and origin city with city id of ${id}`)
+    message.push(
+      `${name} has been created as destination and origin city with city id of ${id}`
+    );
     return message;
   }
 
   public getCities(): string[] {
-    const message = []
+    const message = [];
     const cities = this.repository.findAll();
 
-    message.push(`available city as departure and destination are: ${arrayToString(cities, 'name')}`);
+    message.push(
+      `available city as departure and destination are: ${arrayToString(cities, 'name')}`
+    );
     return message;
   }
 

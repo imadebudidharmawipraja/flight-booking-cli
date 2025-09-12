@@ -1,4 +1,4 @@
-import { ICity } from "../interfaces";
+import { ICity } from '../interfaces';
 
 /**
  * a City Model.
@@ -12,4 +12,3 @@ export class City implements ICity {
     this.name = name;
   }
 }
-
