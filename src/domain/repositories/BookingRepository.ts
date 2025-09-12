@@ -7,8 +7,8 @@ import { Booking } from "../models/Booking";
 export class BookingRepository implements IBookingRepository {
   private bookings: Map<string, Booking> = new Map();
 
-  constructor(bookings: Map<string, Booking>) {
-    this.bookings = bookings || new Map<string, Booking>();
+  constructor() {
+    this.bookings = new Map<string, Booking>();
   }
 
   public create(booking: Booking): Booking {

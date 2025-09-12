@@ -1,6 +1,14 @@
 import { question } from 'readline-sync';
+import { CommandHandler } from '../../application/CommandHandler';
+import { ApplicationService } from '../../domain/services/ApplicationService';
 
 export class AdminCLI {
+  private commandHandler: CommandHandler;
+
+  constructor(applicationService: ApplicationService) {
+    this.commandHandler = new CommandHandler(applicationService);
+  }
+
   public menu(): void {
     try {
       while (true) {
@@ -16,23 +24,24 @@ export class AdminCLI {
         const input = question('\n> ');
         switch (input) {
           case "1":
-            //register flight
+            const flightMessages = this.commandHandler.registerFlight();
+            flightMessages.forEach(message => console.log(message));
             break;
           case "2":
-            //register city
+            const cityMessages = this.commandHandler.registerCity();
+            cityMessages.forEach(message => console.log(message));
             break;
           case "3":
-            //create route
+            const routeMessages = this.commandHandler.registerRoute();
+            routeMessages.forEach(message => console.log(message));
             break;
           case "4":
-            //proceed day
             break;
           case "5":
-            //end day
             break;
           case "6":
-            //exit
-            break;
+            console.log("Exiting admin panel...");
+            return;
           default:
             console.log("❌ Invalid option. Please enter 1-6.");
         }

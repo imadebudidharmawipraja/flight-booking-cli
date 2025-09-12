@@ -1,11 +1,14 @@
 import { question } from 'readline-sync';
+import { CommandHandler } from '../../application/CommandHandler';
 import { ApplicationService } from '../../domain/services/ApplicationService';
 
 export class PassengerCLI {
   private applicationService: ApplicationService;
+  private commandHandler: CommandHandler;
 
   constructor(applicationService: ApplicationService) {
     this.applicationService = applicationService;
+    this.commandHandler = new CommandHandler(applicationService);
   }
 
   public menu(): void {
@@ -23,13 +26,16 @@ export class PassengerCLI {
         const input = question('\n> ');
         switch (input) {
           case "1":
-            // book flight
+            const bookMessages = this.commandHandler.bookFlight();
+            bookMessages.forEach(message => console.log(message));
             break;
           case "2":
-            // cancel booking
+            const cancelMessages = this.commandHandler.cancelFlight();
+            cancelMessages.forEach(message => console.log(message));
             break;
           case "3":
             this.applicationService.getSessionService().logout();
+            console.log("\nLogging out...");
             return;
           default:
             console.log("❌ Invalid option. Please enter 1-3.");
@@ -54,7 +60,7 @@ export class PassengerCLI {
 
     try {
       const messages = this.applicationService.getSessionService().loginPassenger(name);
-      messages.forEach(message => console.log(`✅ ${message}`));
+      messages.forEach(message => console.log(`${message}`));
       this.menu();
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error during login';

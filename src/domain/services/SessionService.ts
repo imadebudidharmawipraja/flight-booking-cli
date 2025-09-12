@@ -20,6 +20,11 @@ export class SessionService implements ISessionService {
     loginPassenger(name: string): string[] {
         const message = []
 
+        if (name.toLowerCase() === "admin") {
+            message.push(`You cannot login as admin. Please try again.`)
+            return message;
+        }
+
         // Create passenger if not exist
         const passenger = this.passengerRepository.findByName(name);
         if (!passenger) {

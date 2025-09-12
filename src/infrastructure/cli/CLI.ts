@@ -10,7 +10,7 @@ export class CLI {
 
   constructor() {
     this.applicationService = new ApplicationService();
-    this.adminCLI = new AdminCLI();
+    this.adminCLI = new AdminCLI(this.applicationService);
     this.passengerCLI = new PassengerCLI(this.applicationService);
   }
 

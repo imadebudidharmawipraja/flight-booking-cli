@@ -44,4 +44,19 @@ export class BookingService implements IBookingService {
     public deleteBooking(id: string): void {
         this.repository.delete(id);
     }
+
+    public cancelBooking(id: string): string[] {
+        try {
+            const booking = this.repository.findById(id);
+            if (!booking) {
+                return ['Booking not found.'];
+            }
+
+            // Simply delete the booking to cancel it
+            this.repository.delete(id);
+            return ['Booking cancelled successfully.'];
+        } catch (error) {
+            return ['Failed to cancel booking. Please try again.'];
+        }
+    }
 }
