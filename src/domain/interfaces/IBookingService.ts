@@ -8,6 +8,5 @@ export interface IBookingService {
     getBookingByScheduledDay(day: number): IBooking[];
     getBookingsByPassenger(passengerName: string): IBooking[];
     updateBookingStatus(id: string, status: BookingStatus): IBooking | undefined;
-    deleteBooking(id: string): void;
     cancelBooking(id: string): string[];
 }
