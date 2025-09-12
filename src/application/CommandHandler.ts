@@ -1,4 +1,5 @@
 import { ApplicationService } from '../domain/services/ApplicationService';
+import { AdvanceToNextDayCommand } from './commands/AdvanceToNextDayCommand';
 import { BookFlightCommand } from './commands/BookFlightCommand';
 import { CancelFlightCommand } from './commands/CancelFlightCommand';
 import { RegisterCityCommand } from './commands/RegisterCityCommand';
@@ -7,6 +8,7 @@ import { RegisterRouteCommand } from './commands/RegisterRouteCommand';
 
 export class CommandHandler {
   private applicationService: ApplicationService;
+  private advanceToNextDayCommand: AdvanceToNextDayCommand;
   private bookFlightCommand: BookFlightCommand;
   private cancelFlightCommand: CancelFlightCommand;
   private registerCityCommand: RegisterCityCommand;
@@ -15,6 +17,7 @@ export class CommandHandler {
 
   constructor(applicationService: ApplicationService) {
     this.applicationService = applicationService;
+    this.advanceToNextDayCommand = new AdvanceToNextDayCommand();
     this.bookFlightCommand = new BookFlightCommand();
     this.cancelFlightCommand = new CancelFlightCommand();
     this.registerCityCommand = new RegisterCityCommand();
@@ -40,5 +43,9 @@ export class CommandHandler {
 
   public registerRoute(): string[] {
     return this.registerRouteCommand.execute(this.applicationService);
+  }
+
+  public advanceToNextDay(): string[] {
+    return this.advanceToNextDayCommand.execute(this.applicationService);
   }
 }

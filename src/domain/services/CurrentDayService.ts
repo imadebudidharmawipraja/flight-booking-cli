@@ -16,8 +16,6 @@ export class CurrentDayService implements ICurrentDayService {
   }
 
   advanceToNextDay(): number {
-    // Logic that we need to do when we advance to next day
-
     return this.currentDayRepository.advanceToNextDay();
   }
 }

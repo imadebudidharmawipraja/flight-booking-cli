@@ -36,6 +36,8 @@ export class AdminCLI {
             routeMessages.forEach(message => console.log(message));
             break;
           case '4':
+            const advanceMessages = this.commandHandler.advanceToNextDay();
+            advanceMessages.forEach(message => console.log(message));
             break;
           case '5':
             break;
