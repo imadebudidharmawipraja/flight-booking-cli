@@ -14,6 +14,7 @@ Before running this application, make sure you have the following installed on y
 ### 1. Download the Application
 
 Clone or download this repository to your local machine:
+
 ```bash
 git clone <repository-url>
 cd flight-booking-cli
@@ -28,6 +29,7 @@ docker compose run --rm flight-booking-cli
 ```
 
 This command will:
+
 - Build the Docker image automatically
 - Start the flight booking CLI application
 - Allow you to interact with the CLI menu
@@ -42,21 +44,24 @@ Login as:
 1. Admin
 2. Passenger
 
-> 
+>
 ```
 
 **Choose your role:**
+
 - **Option 1 (Admin)**: Manage flights, view bookings, and perform administrative tasks
 - **Option 2 (Passenger)**: Search flights, make bookings, and manage your reservations
 
 ### 4. Stopping the Application
 
 To stop the application:
+
 - Press `Ctrl + C` in the terminal
 
 ## Features
 
 This flight booking system includes:
+
 - 👨‍💼 **Admin Interface**: Manage flights and view all bookings
 - 👥 **Passenger Interface**: Search flights and make bookings
 - 🔄 **Interactive CLI**: Easy-to-use command-line interface

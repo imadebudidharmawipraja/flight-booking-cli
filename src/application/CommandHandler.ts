@@ -5,6 +5,7 @@ import { CancelFlightCommand } from './commands/CancelFlightCommand';
 import { RegisterCityCommand } from './commands/RegisterCityCommand';
 import { RegisterFlightCommand } from './commands/RegisterFlightCommand';
 import { RegisterRouteCommand } from './commands/RegisterRouteCommand';
+import { RunFlightCommand } from './commands/RunFlightCommand';
 
 export class CommandHandler {
   private applicationService: ApplicationService;
@@ -14,6 +15,7 @@ export class CommandHandler {
   private registerCityCommand: RegisterCityCommand;
   private registerFlightCommand: RegisterFlightCommand;
   private registerRouteCommand: RegisterRouteCommand;
+  private runFlightCommand: RunFlightCommand;
 
   constructor(applicationService: ApplicationService) {
     this.applicationService = applicationService;
@@ -23,6 +25,7 @@ export class CommandHandler {
     this.registerCityCommand = new RegisterCityCommand();
     this.registerFlightCommand = new RegisterFlightCommand();
     this.registerRouteCommand = new RegisterRouteCommand();
+    this.runFlightCommand = new RunFlightCommand();
   }
 
   public bookFlight(): string[] {
@@ -47,5 +50,9 @@ export class CommandHandler {
 
   public advanceToNextDay(): string[] {
     return this.advanceToNextDayCommand.execute(this.applicationService);
+  }
+
+  public runFlight(): string[] {
+    return this.runFlightCommand.execute(this.applicationService);
   }
 }

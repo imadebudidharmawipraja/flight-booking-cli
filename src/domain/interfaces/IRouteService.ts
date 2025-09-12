@@ -14,4 +14,5 @@ export interface IRouteService {
     destination: string,
     currentDay: number
   ): { availableRoute: Route[]; message: string[] };
+  getRouteById(routeId: string): Route | null;
 }

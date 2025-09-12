@@ -40,6 +40,8 @@ export class AdminCLI {
             advanceMessages.forEach(message => console.log(message));
             break;
           case '5':
+            const runFlightMessages = this.commandHandler.runFlight();
+            runFlightMessages.forEach(message => console.log(message));
             break;
           case '6':
             console.log('Exiting admin panel...');

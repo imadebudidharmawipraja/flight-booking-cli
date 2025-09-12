@@ -32,13 +32,7 @@ export class RouteService implements IRouteService {
     const routeId = `${flightId}-${departureCity}-${destinationCity}-${scheduledDay}`;
 
     this.repository.create(
-      new Route(
-        flightId,
-        departureCity,
-        destinationCity,
-        scheduledDay,
-        flightId
-      )
+      new Route(routeId, departureCity, destinationCity, scheduledDay, flightId)
     );
 
     message.push(
@@ -145,5 +139,9 @@ export class RouteService implements IRouteService {
       return this.findTransitRoutes(departure, destination, currentDay);
     }
     return { availableRoute: [directFlight], message };
+  }
+
+  public getRouteById(routeId: string): Route | null {
+    return this.repository.findById(routeId);
   }
 }

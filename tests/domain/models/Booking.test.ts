@@ -20,13 +20,7 @@ describe('Booking Model', () => {
     });
 
     it('should handle DEPARTED status', () => {
-      const booking = new Booking(
-        '005',
-        'Agus',
-        'R006',
-        'DEPARTED',
-        4
-      );
+      const booking = new Booking('005', 'Agus', 'R006', 'DEPARTED', 4);
       expect(booking.status).toBe('DEPARTED');
     });
 
