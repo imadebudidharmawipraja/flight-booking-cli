@@ -14,8 +14,16 @@ export class BookFlightCommand {
 
       console.log('== BOOK A FLIGHT ==');
       console.log(`Available destinations: ${destinations}`);
-      const departure = question('Enter departure: ');
-      const destination = question('Enter destination: ');
+      const departure = question('Enter departure: ').trim();
+      const destination = question('Enter destination: ').trim();
+
+      if (!departure) {
+        return ['Departure cannot be empty. Please try again.'];
+      }
+
+      if (!destination) {
+        return ['Destination cannot be empty. Please try again.'];
+      }
 
       const flightResult = applicationService
         .getRouteService()
@@ -29,7 +37,7 @@ export class BookFlightCommand {
       const selectedRoute = flightResult.availableRoute[0]; // Use first available route
       flightResult.message.forEach(msg => console.log(msg));
 
-      const confirm = question('Confirm booking (y/n): ');
+      const confirm = question('Confirm booking (y/n): ').trim().toLowerCase();
       if (confirm === 'y') {
         const departureCityId = applicationService
           .getCityService()
@@ -43,7 +51,7 @@ export class BookFlightCommand {
           .createBooking(
             bookingId,
             currentUser,
-            selectedRoute.flightId,
+            selectedRoute.id,
             'BOOKED',
             selectedRoute.scheduledDay
           );

@@ -36,7 +36,7 @@ export class RouteService implements IRouteService {
     );
 
     message.push(
-      `flight ${routeId}-${departureCity}-${destinationCity}-${scheduledDay} from ${departureCity} to ${destinationCity} has been scheduled on day ${scheduledDay} of the week`
+      `Flight route from ${departureCity} to ${destinationCity} has been scheduled on day ${scheduledDay}`
     );
     return message;
   }

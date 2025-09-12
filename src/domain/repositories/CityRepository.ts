@@ -25,6 +25,6 @@ export class CityRepository implements ICityRepository {
   }
 
   public isExist(name: string): boolean {
-    return this.cities.has(name);
+    return Array.from(this.cities.values()).some(city => city.name === name);
   }
 }

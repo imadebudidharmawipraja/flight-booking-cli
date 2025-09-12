@@ -14,12 +14,14 @@ export class CancelFlightCommand {
 
     console.log('== YOUR BOOKINGS ==');
     userBookings.forEach(booking => {
-      console.log(
-        `ID: ${booking.id} | Flight Day: ${booking.flightDay} | Status: ${booking.status}`
-      );
+      console.log(`ID: ${booking.id}`);
     });
 
-    const bookingId = question('Enter Booking ID to cancel: ');
+    const bookingId = question('Enter Booking ID to cancel: ').trim();
+
+    if (!bookingId) {
+      return ['Booking ID cannot be empty. Please try again.'];
+    }
 
     try {
       const messages = applicationService

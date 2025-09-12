@@ -9,15 +9,21 @@ export class RegisterRouteCommand {
     const cities = cityService.getCities();
     cities.forEach(city => console.log(city));
 
-    const departureCity = question('Enter Departure City: ');
+    const departureCity = question('Enter Departure City: ').trim();
+    if (!departureCity) {
+      return ['Departure city cannot be empty. Please try again.'];
+    }
     //check if city exist
-    if (cityService.isCityExist(departureCity)) {
+    if (!cityService.isCityExist(departureCity)) {
       return [`selected city is not available as departure city`];
     }
 
-    const destinationCity = question('Enter Destination City: ');
+    const destinationCity = question('Enter Destination City: ').trim();
+    if (!destinationCity) {
+      return ['Destination city cannot be empty. Please try again.'];
+    }
     //check if city exist
-    if (cityService.isCityExist(destinationCity)) {
+    if (!cityService.isCityExist(destinationCity)) {
       return [`selected city is not available as destination city`];
     }
 
@@ -26,7 +32,10 @@ export class RegisterRouteCommand {
       return ['Departure and Destination city cannot be the same'];
     }
 
-    const scheduledDay = question('Enter Scheduled Day in Week (1-7): ');
+    const scheduledDay = question('Enter Scheduled Day: ').trim();
+    if (!scheduledDay) {
+      return ['Scheduled day cannot be empty. Please try again.'];
+    }
     //check for correct day value
     const dayCheck = parseNumber(scheduledDay);
     if (!dayCheck.valid) {
@@ -40,7 +49,10 @@ export class RegisterRouteCommand {
     console.log(
       `available flight on selected day are: ${arrayToString(availableFlight, 'id')}`
     );
-    const flightId = question('Enter Flight Id: ');
+    const flightId = question('Enter Flight Id: ').trim();
+    if (!flightId) {
+      return ['Flight ID cannot be empty. Please try again.'];
+    }
 
     //check available flight on that day
     if (!availableFlight.some(flight => flight.id === flightId)) {

@@ -4,8 +4,16 @@ import { parseNumber } from '../../utils/utils';
 
 export class RegisterFlightCommand {
   public execute(applicationService: ApplicationService): string[] {
-    const flightId = question('Enter Flight Id: ');
-    const flightCapacity = question('Enter Flight Capacity: ');
+    const flightId = question('Enter Flight Id: ').trim();
+    const flightCapacity = question('Enter Flight Capacity: ').trim();
+
+    if (!flightId) {
+      return ['Flight ID cannot be empty. Please try again.'];
+    }
+
+    if (!flightCapacity) {
+      return ['Flight capacity cannot be empty. Please try again.'];
+    }
 
     const capacityCheck = parseNumber(flightCapacity);
     if (!capacityCheck.valid) {

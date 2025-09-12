@@ -3,8 +3,16 @@ import { ApplicationService } from '../../domain/services/ApplicationService';
 
 export class RegisterCityCommand {
   public execute(applicationService: ApplicationService): string[] {
-    const cityId = question('Enter City Code: ');
-    const cityName = question('Enter City Name: ');
+    const cityId = question('Enter City Code: ').trim();
+    const cityName = question('Enter City Name: ').trim();
+
+    if (!cityId) {
+      return ['City code cannot be empty. Please try again.'];
+    }
+
+    if (!cityName) {
+      return ['City name cannot be empty. Please try again.'];
+    }
 
     try {
       const messages = applicationService
