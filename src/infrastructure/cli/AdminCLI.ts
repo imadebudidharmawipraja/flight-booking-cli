@@ -17,8 +17,8 @@ export class AdminCLI {
         console.log("1. Register Flight");
         console.log("2. Register departure/destination");
         console.log("3. Create Flight Route");
-        console.log("4. Proceed Day");
-        console.log("5. End Day");
+        console.log("4. Advance To Next Day");
+        console.log("5. Run Flight");
         console.log("6. Exit");
 
         const input = question('\n> ');

@@ -10,7 +10,7 @@ export class RegisterRouteCommand {
 
     const departureCity = question("Enter Departure City: ");
     //check if city exist
-    if (!cityService.isCityExist(departureCity)) {
+    if (cityService.isCityExist(departureCity)) {
       return [`selected city is not available as departure city`]
     };
 

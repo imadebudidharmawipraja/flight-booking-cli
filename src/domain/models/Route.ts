@@ -9,14 +9,14 @@ export class Route implements IRoute {
 
   constructor(
     id: string,
-    destinationCity: string,
     departureCity: string,
+    destinationCity: string,
     scheduledDay: number,
     flightId: string
   ) {
     this.id = id;
-    this.destinationCity = destinationCity;
     this.departureCity = departureCity;
+    this.destinationCity = destinationCity;
     this.scheduledDay = scheduledDay;
     this.flightId = flightId;
   }
