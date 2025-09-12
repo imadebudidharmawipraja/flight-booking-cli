@@ -16,7 +16,15 @@ export class BookingService implements IBookingService {
     status: BookingStatus,
     flightDay: number
   ): Booking {
-    const booking = new Booking(id, passengerName, routeId, status, flightDay);
+    const seatNumber = this.getNextAvailableSeat(routeId);
+    const booking = new Booking(
+      id,
+      passengerName,
+      routeId,
+      status,
+      flightDay,
+      seatNumber
+    );
     return this.repository.create(booking);
   }
 
@@ -58,5 +66,20 @@ export class BookingService implements IBookingService {
 
     this.repository.delete(id);
     return ['Booking cancelled successfully.'];
+  }
+
+  public getNextAvailableSeat(routeId: string): number {
+    const existingBookings = this.repository.findByRoute(routeId);
+    const takenSeats = new Set(
+      existingBookings.map(booking => booking.seatNumber)
+    );
+
+    let seatNumber = 1;
+
+    while (takenSeats.has(seatNumber)) {
+      seatNumber++;
+    }
+
+    return seatNumber;
   }
 }

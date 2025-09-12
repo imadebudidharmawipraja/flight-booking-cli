@@ -44,7 +44,9 @@ export class RunFlightCommand {
       messages.push(`Passenger boarding: ${totalPassenger}`);
 
       bookings.forEach(booking => {
-        messages.push(`  - ${booking.passengerName}`);
+        messages.push(
+          `  - ${booking.passengerName} (Seat #${booking.seatNumber})`
+        );
       });
 
       messages.push('Flight Status: DEPARTED');

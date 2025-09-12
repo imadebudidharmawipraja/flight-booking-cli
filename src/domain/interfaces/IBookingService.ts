@@ -15,4 +15,5 @@ export interface IBookingService {
   getBookingsByPassenger(passengerName: string): IBooking[];
   updateBookingStatus(id: string, status: BookingStatus): IBooking | undefined;
   cancelBooking(id: string, currentUser: string): string[];
+  getNextAvailableSeat(routeId: string): number;
 }

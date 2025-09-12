@@ -46,7 +46,7 @@ export class BookFlightCommand {
           .getCityService()
           .getCityIdByName(selectedRoute.destinationCity);
         const bookingId = `${departureCityId} - ${destinationCityId} - ${selectedRoute.scheduledDay}`;
-        applicationService
+        const booking = applicationService
           .getBookingService()
           .createBooking(
             bookingId,
@@ -57,6 +57,7 @@ export class BookFlightCommand {
           );
         return [
           `Booking confirmed! Flight from ${selectedRoute.departureCity} to ${selectedRoute.destinationCity} on day ${selectedRoute.scheduledDay}`,
+          `Assigned seat: #${booking.seatNumber}`,
         ];
       } else {
         return ['Booking cancelled.'];

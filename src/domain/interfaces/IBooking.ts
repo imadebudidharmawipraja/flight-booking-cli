@@ -6,4 +6,5 @@ export interface IBooking {
   routeId: string;
   status: BookingStatus;
   flightDay: number;
+  seatNumber: number;
 }

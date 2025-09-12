@@ -10,7 +10,7 @@ describe('BookingRepository', () => {
 
   describe('create', () => {
     it('should create and store a booking', () => {
-      const booking = new Booking('B001', 'Fajar', 'R001', 'BOOKED', 5);
+      const booking = new Booking('B001', 'Fajar', 'R001', 'BOOKED', 5, 1);
 
       const result = bookingRepository.create(booking);
 
@@ -27,8 +27,8 @@ describe('BookingRepository', () => {
     });
 
     it('should return all bookings', () => {
-      const booking1 = new Booking('B001', 'Agus', 'R001', 'BOOKED', 5);
-      const booking2 = new Booking('B002', 'Adi', 'R002', 'DEPARTED', 3);
+      const booking1 = new Booking('B001', 'Agus', 'R001', 'BOOKED', 5, 1);
+      const booking2 = new Booking('B002', 'Adi', 'R002', 'DEPARTED', 3, 2);
 
       bookingRepository.create(booking1);
       bookingRepository.create(booking2);
@@ -43,7 +43,7 @@ describe('BookingRepository', () => {
 
   describe('findById', () => {
     it('should return booking when found', () => {
-      const booking = new Booking('B003', 'Bob', 'R003', 'ARRIVED', 7);
+      const booking = new Booking('B003', 'Bob', 'R003', 'ARRIVED', 7, 2);
       bookingRepository.create(booking);
 
       const result = bookingRepository.findById('B003');
@@ -61,13 +61,13 @@ describe('BookingRepository', () => {
   describe('findByPassengerName', () => {
     beforeEach(() => {
       bookingRepository.create(
-        new Booking('B001', 'Agus', 'R001', 'BOOKED', 5)
+        new Booking('B001', 'Agus', 'R001', 'BOOKED', 5, 1)
       );
       bookingRepository.create(
-        new Booking('B002', 'Budi', 'R002', 'DEPARTED', 3)
+        new Booking('B002', 'Budi', 'R002', 'DEPARTED', 3, 2)
       );
       bookingRepository.create(
-        new Booking('B003', 'Caca', 'R003', 'ARRIVED', 7)
+        new Booking('B003', 'Caca', 'R003', 'ARRIVED', 7, 3)
       );
     });
 
@@ -94,13 +94,13 @@ describe('BookingRepository', () => {
   describe('findByRoute', () => {
     beforeEach(() => {
       bookingRepository.create(
-        new Booking('B001', 'John', 'R001', 'BOOKED', 5)
+        new Booking('B001', 'John', 'R001', 'BOOKED', 5, 1)
       );
       bookingRepository.create(
-        new Booking('B002', 'Jane', 'R002', 'DEPARTED', 3)
+        new Booking('B002', 'Jane', 'R002', 'DEPARTED', 3, 2)
       );
       bookingRepository.create(
-        new Booking('B003', 'Bob', 'R001', 'ARRIVED', 7)
+        new Booking('B003', 'Bob', 'R001', 'ARRIVED', 7, 3)
       );
     });
 
@@ -121,10 +121,10 @@ describe('BookingRepository', () => {
   describe('delete', () => {
     beforeEach(() => {
       bookingRepository.create(
-        new Booking('B001', 'John', 'R001', 'BOOKED', 5)
+        new Booking('B001', 'John', 'R001', 'BOOKED', 5, 1)
       );
       bookingRepository.create(
-        new Booking('B002', 'Jane', 'R002', 'DEPARTED', 3)
+        new Booking('B002', 'Jane', 'R002', 'DEPARTED', 3, 2)
       );
     });
 

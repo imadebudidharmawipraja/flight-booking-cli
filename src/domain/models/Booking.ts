@@ -10,18 +10,21 @@ export class Booking implements IBooking {
   routeId: string;
   status: BookingStatus;
   flightDay: number;
+  seatNumber: number;
 
   constructor(
     id: string,
     passengerName: string,
     routeId: string,
     status: BookingStatus,
-    flightDay: number
+    flightDay: number,
+    seatNumber: number
   ) {
     this.id = id;
     this.passengerName = passengerName;
     this.routeId = routeId;
     this.status = status;
     this.flightDay = flightDay;
+    this.seatNumber = seatNumber;
   }
 }
