@@ -63,11 +63,15 @@ export class PassengerCLI {
     }
 
     try {
-      const messages = this.applicationService
+      const result = this.applicationService
         .getSessionService()
         .loginPassenger(name);
-      messages.forEach(message => console.log(`${message}`));
-      this.menu();
+
+      result.messages.forEach(message => console.log(`${message}`));
+
+      if (result.success) {
+        this.menu();
+      }
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : 'Unknown error during login';

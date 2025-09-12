@@ -1,6 +1,6 @@
 export interface ISessionService {
   loginAdmin(): void;
-  loginPassenger(name: string): string[];
+  loginPassenger(name: string): { success: boolean; messages: string[] };
   logout(): void;
   getCurrentUser(): string;
   isAdminLoggedIn(): boolean;

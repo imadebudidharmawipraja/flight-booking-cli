@@ -21,12 +21,12 @@ export class SessionService implements ISessionService {
     this.sessionRepository.setCurrentUser('admin');
   }
 
-  loginPassenger(name: string): string[] {
-    const message = [];
+  loginPassenger(name: string): { success: boolean; messages: string[] } {
+    const messages = [];
 
     if (name.toLowerCase() === 'admin') {
-      message.push(`You cannot login as admin. Please try again.`);
-      return message;
+      messages.push(`You cannot login as admin. Please try again.`);
+      return { success: false, messages };
     }
 
     // Create passenger if not exist
@@ -36,8 +36,8 @@ export class SessionService implements ISessionService {
     }
     this.sessionRepository.setCurrentUser(name);
 
-    message.push(`Welcome, ${name}!`);
-    return message;
+    messages.push(`Welcome, ${name}!`);
+    return { success: true, messages };
   }
 
   logout(): void {
