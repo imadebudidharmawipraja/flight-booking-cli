@@ -1,4 +1,4 @@
-export type BookingStatus = "ARRIVED" | "DEPARTED";
+export type BookingStatus = "ARRIVED" | "DEPARTED" | "BOOKED";
 
 export interface IBooking {
   readonly id: string;

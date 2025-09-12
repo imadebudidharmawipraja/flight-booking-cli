@@ -23,6 +23,13 @@ export class RouteRepository implements IRouteRepository {
     return routes;
   }
 
+  findByCities(departure: string, destination: string): Route[] {
+    return Array.from(this.routes.values().filter(
+      (route) =>
+        route.departureCity === departure && route.destinationCity === destination
+    ));
+  }
+
   findAll(): Route[] {
     return Array.from(this.routes.values());
   }
