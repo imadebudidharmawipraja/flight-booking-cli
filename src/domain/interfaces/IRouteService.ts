@@ -9,5 +9,7 @@ export interface IRouteService {
     flightId: string
   ): string[];
   getAvailableFlightByDay(day: number): Flight[];
-  getAvailableBookFlight(departure: string, destination: string, currentDay: number): Route[];
+  getAvailableBookFlight(
+    departure: string, destination: string, currentDay: number
+  ): { availableRoute: Route[], message: string[] }
 }
