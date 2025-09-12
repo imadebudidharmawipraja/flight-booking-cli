@@ -29,4 +29,9 @@ export class CityService implements ICityService {
   public isCityExist(name: string): boolean {
     return this.repository.isExist(name);
   }
+
+  public getCityIdByName(name: string): string {
+    const city = this.repository.findByName(name);
+    return city?.id ?? 'NO-CITY-ID';
+  }
 }

@@ -6,7 +6,8 @@ export class RegisterRouteCommand {
   public execute(applicationService: ApplicationService): string[] {
     const cityService = applicationService.getCityService();
     const routeService = applicationService.getRouteService();
-    cityService.getCities();
+    const cities = cityService.getCities();
+    cities.forEach(city => console.log(city));
 
     const departureCity = question("Enter Departure City: ");
     //check if city exist

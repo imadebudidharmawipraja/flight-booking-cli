@@ -3,6 +3,9 @@ import { ApplicationService } from "../../domain/services/ApplicationService";
 
 export class CancelFlightCommand {
     public execute(applicationService: ApplicationService): string[] {
+        const bookings = applicationService.getBookingService().getAllBookings();
+        bookings.forEach(booking => console.log(`${booking.id} - ${booking.passengerName} - ${booking.routeId} - ${booking.status} - ${booking.flightDay}`));
+
         const bookingId = question("Enter Booking ID: ");
 
         try {

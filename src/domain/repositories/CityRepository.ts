@@ -20,6 +20,10 @@ export class CityRepository implements ICityRepository {
     return this.cities.get(id);
   }
 
+  public findByName(name: string): City | undefined {
+    return Array.from(this.cities.values()).find(city => city.name === name);
+  }
+
   public isExist(name: string): boolean {
     return this.cities.has(name);
   }

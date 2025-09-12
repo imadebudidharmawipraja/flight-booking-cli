@@ -14,24 +14,29 @@ export class BookFlightCommand {
             const departure = question("Enter departure: ")
             const destination = question("Enter destination: ")
 
-            const availableFlights = applicationService.getRouteService().getAvailableBookFlight(departure, destination, currentDay)
-            if (availableFlights.length === 0) {
-                console.log(['no flight is available for that route']);
-            } else {
-                console.log(`flight found: ${departure} - ${destination} on day ${availableFlights[0].scheduledDay}`);
+            const flightResult = applicationService.getRouteService().getAvailableBookFlight(departure, destination, currentDay)
+
+            if (flightResult.availableRoute.length === 0) {
+                // console.log(['no flight is available for that route']);
+                return ['No flights available for the selected route.'];
             }
+
+            const selectedRoute = flightResult.availableRoute[0]; // Use first available route
+            flightResult.message.forEach(msg => console.log(msg));
 
             const confirm = question("Confirm booking (y/n): ")
             if (confirm === "y") {
-                const selectedFlight = availableFlights[0]; // Use first available flight
+                const departureCityId = applicationService.getCityService().getCityIdByName(selectedRoute.departureCity);
+                const destinationCityId = applicationService.getCityService().getCityIdByName(selectedRoute.destinationCity);
+                const bookingId = `${departureCityId} - ${destinationCityId} - ${selectedRoute.scheduledDay}`;
                 applicationService.getBookingService().createBooking(
-                    selectedFlight.id,
+                    bookingId,
                     currentUser,
-                    selectedFlight.id,
+                    selectedRoute.flightId,
                     "BOOKED",
-                    selectedFlight.scheduledDay
+                    selectedRoute.scheduledDay
                 )
-                return [`Booking confirmed! Flight from ${selectedFlight.departureCity} to ${selectedFlight.destinationCity} on day ${selectedFlight.scheduledDay}`];
+                return [`Booking confirmed! Flight from ${selectedRoute.departureCity} to ${selectedRoute.destinationCity} on day ${selectedRoute.scheduledDay}`];
             } else {
                 return ["Booking cancelled."];
             }
