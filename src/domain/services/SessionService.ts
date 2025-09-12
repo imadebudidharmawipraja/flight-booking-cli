@@ -1,4 +1,5 @@
 import { IPassengerRepository, ISessionRepository, ISessionService } from "../interfaces";
+import { Passenger } from "../models/Passenger";
 
 export class SessionService implements ISessionService {
     private sessionRepository: ISessionRepository;
@@ -22,7 +23,7 @@ export class SessionService implements ISessionService {
         // Create passenger if not exist
         const passenger = this.passengerRepository.findByName(name);
         if (!passenger) {
-            this.passengerRepository.create({ name })
+            this.passengerRepository.create(new Passenger(name));
         }
         this.sessionRepository.setCurrentUser(name);
 

@@ -13,7 +13,7 @@ export class AdminCLI {
         console.log("5. End Day");
         console.log("6. Exit");
 
-        const input = question('> ');
+        const input = question('\n> ');
         switch (input) {
           case "1":
             //register flight

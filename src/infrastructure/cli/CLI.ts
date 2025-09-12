@@ -1,11 +1,17 @@
 import { question } from 'readline-sync';
+import { ApplicationService } from '../../domain/services/ApplicationService';
 import { AdminCLI } from './AdminCLI';
+import { PassengerCLI } from './PassengerCLI';
 
 export class CLI {
   private adminCLI: AdminCLI;
+  private passengerCLI: PassengerCLI;
+  private applicationService: ApplicationService;
 
   constructor() {
+    this.applicationService = new ApplicationService();
     this.adminCLI = new AdminCLI();
+    this.passengerCLI = new PassengerCLI(this.applicationService);
   }
 
   public start(): void {
@@ -16,13 +22,13 @@ export class CLI {
         console.log("1. Admin");
         console.log("2. Passenger");
 
-        const input = question('> ');
+        const input = question('\n> ');
         switch (input) {
           case "1":
             this.adminCLI.menu();
             break;
           case "2":
-            this.userMenu()
+            this.passengerCLI.handlePassengerLogin();
             break;
           default:
             console.log("❌ Invalid option. Please enter 1 or 2.");
@@ -33,22 +39,6 @@ export class CLI {
         error instanceof Error ? error.message : 'Unknown error';
 
       console.log(`Error: ${errorMessage}`);
-    }
-  }
-
-  private userMenu() {
-    while (true) {
-      console.log("\n==== PASSENGER PANEL ====");
-      console.log("3. Exit");
-
-      const input = question("> ");
-
-      switch (input) {
-        case "3":
-          return;
-        default:
-          console.log("❌ Invalid option. Try again.");
-      }
     }
   }
 }
