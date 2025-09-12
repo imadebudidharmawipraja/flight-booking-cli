@@ -14,5 +14,5 @@ export interface IBookingService {
   getBookingByScheduledDay(day: number): IBooking[];
   getBookingsByPassenger(passengerName: string): IBooking[];
   updateBookingStatus(id: string, status: BookingStatus): IBooking | undefined;
-  cancelBooking(id: string): string[];
+  cancelBooking(id: string, currentUser: string): string[];
 }

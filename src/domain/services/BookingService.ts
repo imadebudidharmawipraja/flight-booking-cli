@@ -46,10 +46,14 @@ export class BookingService implements IBookingService {
     return undefined;
   }
 
-  public cancelBooking(id: string): string[] {
+  public cancelBooking(id: string, currentUser: string): string[] {
     const booking = this.repository.findById(id);
     if (!booking) {
       return ['Booking not found.'];
+    }
+
+    if (booking.passengerName !== currentUser) {
+      return ['You can only cancel your own bookings.'];
     }
 
     this.repository.delete(id);

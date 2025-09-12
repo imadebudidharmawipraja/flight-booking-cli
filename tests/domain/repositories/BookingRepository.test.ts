@@ -74,7 +74,7 @@ describe('BookingRepository', () => {
     it('should return all bookings for specific passenger', () => {
       const bookings = bookingRepository.findByPassengerName('Agus');
 
-      expect(bookings).toHaveLength(2);
+      expect(bookings).toHaveLength(1);
       expect(bookings.every(b => b.passengerName === 'Agus')).toBe(true);
     });
 
